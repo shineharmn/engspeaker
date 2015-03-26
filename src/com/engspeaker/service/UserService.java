@@ -1,5 +1,7 @@
 package com.engspeaker.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import net.sf.json.JSONObject;
 
 import com.engspeaker.dao.IUserDao;
@@ -20,7 +22,7 @@ public class UserService {
 	}
 	
 	/**
-	 * 用户修改密码，关卡有更新时调用
+	 * 用户修改密码，或闯过下一关时调用
 	 * @param username
 	 * @param password
 	 */
@@ -30,6 +32,7 @@ public class UserService {
 		String username = jsonObject.getString("username");		
 		String password = jsonObject.getString("password");	
 		int lastUnclock = Integer.valueOf(jsonObject.getString("lastUnclock"));	
+			 
 		
 		userDao.updateUserInfo(username, password, lastUnclock);
 	}
@@ -40,14 +43,14 @@ public class UserService {
 	 * @param password
 	 * @param nickname
 	 */
-	public void addUser(String json){
+	public User addUser(String json){
 		
 		JSONObject jsonObject = JSONObject.fromObject(json);
 		String username = jsonObject.getString("username");		
 		String password = jsonObject.getString("password");	
 		String nickname = jsonObject.getString("nickname");	
 		
-		userDao.addUser(username, password, nickname);
+		return userDao.addUser(username, password, nickname);
 		
 	}
 	
@@ -68,8 +71,8 @@ public class UserService {
 	/**
 	 * 更新头像信息
 	 */
-	public void updatePortrait(){
+	public void updatePortrait(HttpServletRequest request){
 		
-		
+		userDao.updateUserPortrait(request);
 	}
 }

@@ -1,5 +1,7 @@
 package com.engspeaker.dao;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.engspeaker.entity.User;
 
 public interface IUserDao {
@@ -8,7 +10,7 @@ public interface IUserDao {
 	
 	public User findUser(String username,String password);
 	
-	public void addUser(String username,String password,String nickname);
+	public User addUser(String username,String password,String nickname);
 	
-	public void updateUserPortrait();
+	public void updateUserPortrait(HttpServletRequest request);
 }

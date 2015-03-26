@@ -6,7 +6,7 @@
     <class name="com.engspeaker.entity.Cases" table="t_cases" catalog="zzzss">
         <id name="caseId" type="java.lang.Integer">
             <column name="caseId" />
-            <generator class="uuid.hex"></generator>
+            <generator class="increment"></generator>
         </id>
         <property name="option1" type="java.lang.String">
             <column name="option1" />

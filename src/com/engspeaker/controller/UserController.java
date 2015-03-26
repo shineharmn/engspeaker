@@ -24,6 +24,14 @@ public class UserController {
 	
 	private UserService userService = new UserService(userDao);
 	
+	
+	/**
+	 * 登录
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(params="method=login")
 	String login(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String username = request.getParameter("username");
@@ -41,13 +49,60 @@ public class UserController {
 		return null;
 	}
 	
+	
+	/**
+	 * 注册
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(params="method=register")
 	String register(HttpServletRequest request, HttpServletResponse response) throws IOException{
-//		PrintWriter out = response.getWriter();
-		String userInfo = request.getParameter("userInfo");
+		PrintWriter out = response.getWriter();
+		String registerInfo = request.getParameter("userInfo");
+		User user = userService.addUser(registerInfo);
+		if(user!=null){
+			JSONObject json = JSONObject.fromObject(user);
+			out.print(json.toString());
+		}else{
+			out.print("");
+		}
 		
-		userService.addUser(userInfo);
-				
 		return null;
 	}
+	
+	
+	/**
+	 * 用户数据更新，user表用户自己的一列所有数据一起更，不包括头像路径
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(params="method=update")
+	String update(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		
+		String updateInfo = request.getParameter("updateInfo");
+		
+		userService.updateUserInfo(updateInfo);
+		
+		return null;
+	}
+	
+	/**
+	 * 更新头像
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(params="method=portrait")
+	String portrait(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		userService.updatePortrait(request);
+		
+		return null;
+	}
+	
 }

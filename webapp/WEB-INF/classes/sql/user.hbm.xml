@@ -6,7 +6,7 @@
     <class name="com.engspeaker.entity.User" table="t_user" catalog="zzzss">
         <id name="fid" type="java.lang.Long">
             <column name="fid" />
-            <generator class="uuid.hex"></generator>
+            <generator class="increment"></generator>
         </id>
         <property name="username" type="java.lang.String">
             <column name="username" not-null="true"/>
