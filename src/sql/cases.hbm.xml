@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.engspeaker.entity.Cases" table="t_cases" catalog="zzzss">
+        <id name="caseId" type="java.lang.Integer">
+            <column name="caseId" />
+            <generator class="uuid.hex"></generator>
+        </id>
+        <property name="option1" type="java.lang.String">
+            <column name="option1" />
+        </property>
+        <property name="option2" type="java.lang.String">
+            <column name="option2" />
+        </property>
+        <property name="option3" type="java.lang.String">
+            <column name="option3" />
+        </property>
+        <property name="option4" type="java.lang.String">
+            <column name="option4" />
+        </property>
+        <property name="option5" type="java.lang.String">
+            <column name="option5" />
+        </property>
+        <property name="option6" type="java.lang.String">
+            <column name="option6" />
+        </property>
+        <property name="option7" type="java.lang.String">
+            <column name="option7" />
+        </property>
+        <property name="option8" type="java.lang.String">
+            <column name="option8" />
+        </property>
+        
+        <property name="option9" type="java.lang.String">
+            <column name="option9" />
+        </property>
+        <property name="question" type="java.lang.String">
+            <column name="question" not-null="true"/>
+        </property>
+       <property name="answer" type="java.lang.String">
+            <column name="answer" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
