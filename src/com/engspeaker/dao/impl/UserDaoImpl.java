@@ -49,7 +49,7 @@ public class UserDaoImpl implements IUserDao{
 			user.setUsername(username);
 			user.setPassword(password);
 			user.setNickname(nickname);
-			user.setLastUnlock(0); 
+			user.setLastUnlock(1); 
 			user.setPortrait_path("D:\\engspeaker_portrait\\"+username+"_portrait.jpg"); 	
 			session.beginTransaction();
 			session.save(user);

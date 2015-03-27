@@ -16,6 +16,11 @@ import com.engspeaker.dao.impl.UserDaoImpl;
 import com.engspeaker.entity.User;
 import com.engspeaker.service.UserService;
 
+/**
+ * 
+ * @author shine
+ *
+ */
 @Controller
 @RequestMapping("/user.do")
 public class UserController {
