@@ -1,6 +1,14 @@
 package com.engspeaker.service;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
@@ -62,9 +70,7 @@ public class UserService {
 	 * @return
 	 */
 	public User login(String username,String password){
-		
-		
-		
+				
 		return userDao.findUser(username, password);
 	}
 	
@@ -75,4 +81,21 @@ public class UserService {
 		
 		userDao.updateUserPortrait(request);
 	}
+	
+	/**
+	 * 下载头像到客户端
+	 */
+	public void downloadPortrait(HttpServletResponse response) throws IOException{
+		
+		File file = new File("D:\\暂存\\图片2.png");
+		String sufix = file.getName().split("\\.")[1];
+		ServletOutputStream out = response.getOutputStream();
+		BufferedImage bi;
+		bi = ImageIO.read(file);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();   
+        ImageIO.write(bi, sufix, baos);   
+        byte[] bytes = baos.toByteArray();   
+		out.write(bytes);
+	}
+	
 }
